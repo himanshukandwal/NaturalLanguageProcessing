@@ -1,0 +1,16 @@
+{
+	"class" : "directory",
+	"title" : "Directory services",
+	"type"  : "service",
+	"about" : "Find people at UT Dallas. You can search by name, campus phone or email",
+	"list" : [ 
+		{ 
+			"type" : "admission department"
+		},
+		{ 
+			"type" : "police department"
+		},
+		{ 
+			"type" : "Bursar department"
+		}]
+}
