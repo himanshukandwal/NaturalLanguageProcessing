@@ -1,0 +1,50 @@
+{
+	"class": "Self",
+	"about" : "NLP powered BOT",
+	"categories" : [ 
+		{ 
+			"pattern" : " * WHO ARE YOU * ",
+			"template": "I am NLP powered BOT, nice to meet you ${user} !"
+		},
+		{ 
+			"pattern" : "* WHAT * YOUR * VERSION * ",
+			"template": "I am a first version project"
+		},
+		{ 
+			"pattern" : "* WHAT * TIME * ",
+			"template": "Time now is ${date}"
+		},
+		{
+			"pattern" : "* WHAT IS THE NAME OF UNIVERSITY * ",
+			"template": "The university is University of Texas at Dallas."
+		},
+		{
+			"pattern" : "HELLO *",
+			"template": "Hey there, how are you ?"
+		},
+		{
+			"pattern" : "HI *",
+			"template": "Hey there, how are you ?"
+		},
+		{
+			"pattern" : "* WHERE AM I * ",
+			"template": "You are currently at ${location}"
+		},
+		{
+			"pattern" : "* WHO CREATED YOU * ",
+			"template": "Himanshu Kandwal is my creator"
+		},
+		{
+			"pattern" : "* WHAT IS THE DATE *",
+			"template": "The date is ${date}"
+		},
+		{
+			"pattern" : "I AM *",
+			"template": "Hello ${star} , I am NLP powered BOT, nice to meet you"
+		},
+		{
+			"pattern" : "* HOW ARE YOU *",
+			"template": "I am good."
+		}
+	]
+}

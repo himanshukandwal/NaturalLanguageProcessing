@@ -1,10 +1,11 @@
-package utd.project.campus.bot.knowledge;
+package utd.project.campus.bot.knowledge.processor;
 
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
 import utd.project.campus.bot.NLPProjectException;
+import utd.project.campus.bot.knowledge.processor.KnowledgeResourcesParser;
 
 public class KnowledgeResourcesParserTest {
 
