@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">University.bot</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="welcome_button">Welcome Button</string>
+    <string name="welcome_content">Voice search helper</string>
+    <string name="welcome_logo_content_desc">Welcome University Logo</string>
+    <string name="project_desc">NLP Voice Bot</string>
+    <string name="title_speak_here">Speak Here</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="welcome_content_desc">A NLP Project</string>
+
+</resources>
