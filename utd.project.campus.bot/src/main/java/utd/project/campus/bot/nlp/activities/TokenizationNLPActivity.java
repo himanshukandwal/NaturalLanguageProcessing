@@ -30,12 +30,14 @@ public class TokenizationNLPActivity extends AbstractNLPActivity {
 					responses.addAll(Arrays.asList(tokens));
 				}
 			}
+			model.cleanupMetaData();
+		
 		} catch (InvalidFormatException e) {
 			throw new NLPProjectException(e);
 		} catch (IOException e) {
 			throw new NLPProjectException(e);
 		}
-
+		
 		return responses;
 	}
 

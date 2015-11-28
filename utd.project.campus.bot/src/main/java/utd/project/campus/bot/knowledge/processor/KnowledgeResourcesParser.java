@@ -15,7 +15,6 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.restassured.path.json.JsonPath;
 
 import utd.project.campus.bot.NLPProjectException;
 import utd.project.campus.bot.knowledge.model.Category;
@@ -67,7 +66,7 @@ public class KnowledgeResourcesParser {
 		if (!isKnowledgeGained) {
 			try {
 				InputStream[] knowledgeInputStreams = getKnowledge();
-
+				int index = 1;
 				for (InputStream knowledgeInputStream : knowledgeInputStreams) {
 					StringBuffer jsonStringBuffer = new StringBuffer();
 					BufferedReader knowledgeBufferedReader = new BufferedReader(
@@ -77,10 +76,10 @@ public class KnowledgeResourcesParser {
 					while ((line = knowledgeBufferedReader.readLine()) != null)
 						jsonStringBuffer.append(line).append("\n");
 
-					String classname = JsonPath.from(jsonStringBuffer.toString()).get("class");
-
-					getKnowledgeBank().put(classname, (KnowledgeModel) getObjectMapper().reader(KnowledgeModel.class)
+					getKnowledgeBank().put(String.valueOf(index), (KnowledgeModel) getObjectMapper().reader(KnowledgeModel.class)
 							.readValue(jsonStringBuffer.toString()));
+					
+					index ++;
 				}
 			} catch (JsonProcessingException e) {
 				throw new NLPProjectException(" error while gaining knowledge. ", e);
@@ -106,7 +105,7 @@ public class KnowledgeResourcesParser {
 	}
 
 	public InputStream[] getKnowledge() throws NLPProjectException {
-		String[] knowledgeJsons = new String[] { "awareness.aiml", "library.aiml", "university.aiml" };
+		String[] knowledgeJsons = new String[] { "awareness.aiml", "library-contacts.aiml", "library.aiml", "university.aiml" };
 
 		List<InputStream> knowledgeResources = new ArrayList<InputStream>();
 

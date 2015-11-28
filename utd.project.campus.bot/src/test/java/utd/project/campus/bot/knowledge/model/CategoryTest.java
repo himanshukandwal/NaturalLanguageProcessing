@@ -15,8 +15,8 @@ public class CategoryTest {
 			KnowledgeResourcesParser parser = KnowledgeResourcesParser.getInstance();
 			parser.gainKnowledge();
 			
-			assertEquals(3, parser.getKnowledgeBank().size());
-			assertEquals(" * ABOUT LIBRARY * ", parser.getKnowledgeBank().values().toArray(new KnowledgeModel[0])[0].getCategories()[0].getMatchPathAsString());
+			assertEquals(4, parser.getKnowledgeBank().size());
+			assertEquals(" * WHO ARE YOU * ", parser.getKnowledgeBank().values().toArray(new KnowledgeModel[0])[0].getCategories()[0].getMatchPathAsString());
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			fail();

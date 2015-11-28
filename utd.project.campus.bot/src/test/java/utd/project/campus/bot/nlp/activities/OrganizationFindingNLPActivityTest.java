@@ -4,10 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utd.project.campus.bot.NLPProjectException;
 
+@Ignore
 @SuppressWarnings("rawtypes")
 public class OrganizationFindingNLPActivityTest {
 

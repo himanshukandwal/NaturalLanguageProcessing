@@ -3,8 +3,57 @@
 	"about" : "Eugene McDermott Library ",
 	"categories" : [ 
 		{ 
-			"pattern" : " * ABOUT  LIBRARY * ",
+			"pattern" : " * ABOUT LIBRARY * ",
 			"template": "The University of Texas at Dallas has Eugene McDermott Library, which has the mission of the University of Texas at Dallas by providing maximum access to relevant, authoritative, and scholarly resources."
+		},
+		{ 
+			"pattern" : " * LOCATION * LIBRARY * ",
+			"template": "The Eugene McDermott Library is located at following location ${library_location}"
+		},
+		{ 
+			"pattern" : " * LIBRARY * LOCATION * ",
+			"template": "The Eugene McDermott Library is located at following location ${library_location}"
+		},
+		{ 
+			"pattern" : " * LIBRARY * PHONE * ",
+			"template": "For general information, call 972-883-2955"
+		},
+		{ 
+			"pattern" : " * LIBRARY * PHONE NUMBER * ",
+			"template": "For general information, call 972-883-2955"
+		},
+		{ 
+			"pattern" : " * LIBRARY * TIMINGS * ",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours."
+		},
+		{ 
+			"pattern" : " * TIMINGS * LIBRARY * ",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours."
+		},
+		{ 
+			"pattern" : " * LIST * LIBRARY * HOLIDAYS * ",
+			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+		},
+		{ 
+			"pattern" : " * LIBRARY * HOLIDAYS * LIST *",
+			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+		},
+		{ 
+			"pattern" : " * LIBRARY * CLOSED *",
+			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+		},
+		{ 
+			"pattern" : " * LIBRARY NOT OPEN *",
+			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+		},
+		{ 
+			"pattern" : " * LIBRARY * TIMINGS * THANKSGIVING *",
+			"template": "Eugene McDermott Library and Callier Library have special hours during the week of Thanksgiving.  McDermott will close at midnight on Wednesday and reopen on Friday morning."
+		},
+		{ 
+			"pattern" : " * THANKSGIVING * LIBRARY * TIMINGS *",
+			"template": "Eugene McDermott Library and Callier Library have special hours during the week of Thanksgiving.  McDermott will close at midnight on Wednesday and reopen on Friday morning."
 		}
+		
 	]
 }

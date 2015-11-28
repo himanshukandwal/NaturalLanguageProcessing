@@ -30,6 +30,8 @@ public class PosTaggingNLPActivity extends AbstractNLPActivity {
 				for (String stringTag : tags)
 					responses.add(PartOfSpeechTag.valueOf(stringTag));
 			}
+			posModel.cleanupMetaData();
+			
 		} catch (InvalidFormatException e) {
 			throw new NLPProjectException(e);
 		} catch (IOException e) {
