@@ -1,0 +1,67 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nlp.utdallas.edu.universitybot.WelcomeActivity"
+    android:clickable="true" android:id="@+id/main" android:fitsSystemWindows="true"
+    android:background="#ffffff">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/welcomeScreenFiller"
+        android:visibility="visible"
+        android:linksClickable="false"
+        android:longClickable="false"
+        android:textAlignment="center"
+        android:clickable="true" />
+
+    <ImageView
+        android:layout_width="369dp"
+        android:layout_height="315dp"
+        android:id="@+id/welcomeUtdLogo"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@drawable/utdlogo"
+        android:contentDescription="@string/welcome_logo_content_desc"
+        android:clickable="true"/>
+
+    <TextView
+        android:layout_width="308dp"
+        android:layout_height="63dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/welcome_content"
+        android:id="@+id/welcomeTitle"
+        android:layout_gravity="center"
+        android:contentDescription="@string/project_desc"
+        android:typeface="sans"
+        android:textScaleX="1.55"
+        android:visibility="visible"
+        android:textColor="@color/material_blue_grey_900"
+        android:linksClickable="false"
+        android:longClickable="false"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:text="@string/welcome_content_desc"
+        android:id="@+id/welcomeTitleDesc"
+        android:layout_gravity="bottom|center"
+        android:gravity="center"
+        android:contentDescription="@string/project_desc"
+        android:typeface="normal"
+        android:textScaleX="1"
+        android:visibility="visible"
+        android:textColor="@color/material_blue_grey_900"
+        android:linksClickable="false"
+        android:longClickable="false"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:textStyle="normal|italic"
+        android:singleLine="false"
+        android:clickable="true"/>
+
+</FrameLayout>
