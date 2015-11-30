@@ -4,7 +4,7 @@
 	"categories" : [ 
 		{ 
 			"pattern" : " * WHO ARE YOU * ",
-			"template": "I am NLP powered BOT, nice to meet you ${user} !"
+			"template": "I am NLP powered BOT, nice to meet you !"
 		},
 		{ 
 			"pattern" : "* WHAT * YOUR * VERSION * ",
@@ -67,7 +67,11 @@
 			"template": "Hello User, how may I assist you in searching for library ?"
 		},
 		{
-			"pattern" : "WHAT DO YOU DO",
+			"pattern" : "* WHAT DO YOU DO",
+			"template": "Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?"
+		},
+		{
+			"pattern" : "* WHAT * YOU DO",
 			"template": "Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?"
 		}
 	]

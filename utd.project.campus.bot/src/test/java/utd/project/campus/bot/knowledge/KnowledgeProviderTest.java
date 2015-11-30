@@ -91,6 +91,11 @@ public class KnowledgeProviderTest {
             response = knowledgeProvider.respond("what do you do".toUpperCase().split("\\s+"));
 			assertEquals("Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?", response);
 			
+			response = knowledgeProvider.respond("so can you tell me exactly what you do".toUpperCase().split("\\s+"));
+			assertEquals("Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?", response);
+			
+			response = knowledgeProvider.respond("so can you tell me what exactly you do".toUpperCase().split("\\s+"));
+			assertEquals("Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?", response);
 			
 		} catch (NLPProjectException exception) {
 			exception.printStackTrace();
