@@ -16,7 +16,7 @@ public class CategoryTest {
 			parser.gainKnowledge();
 			
 			assertEquals(4, parser.getKnowledgeBank().size());
-			assertEquals(" * WHO ARE YOU * ", parser.getKnowledgeBank().values().toArray(new KnowledgeModel[0])[0].getCategories()[0].getMatchPathAsString());
+			assertEquals("* WHO ARE YOU *", parser.getKnowledgeBank().values().toArray(new KnowledgeModel[0])[0].getCategories()[0].getMatchPathAsString().trim());
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			fail();
