@@ -27,14 +27,6 @@
 			"template": "I hope, I am doing good, how you doing ?"
 		},
 		{
-			"pattern" : "HELLO *",
-			"template": "Hey there, how are you ?"
-		},
-		{
-			"pattern" : "HI *",
-			"template": "Hey there, I am good, how are you ?"
-		},
-		{
 			"pattern" : "* WHERE AM I * ",
 			"template": "You are currently at ${location}"
 		},
@@ -51,20 +43,20 @@
 			"template": "Hello ${star} , I am NLP powered BOT, nice to meet you"
 		},
 		{
-			"pattern" : "HI HOW ARE YOU *",
-			"template": "I am good. You tell how are you?"
-		},
-		{
 			"pattern" : "* HOW ARE YOU *",
-			"template": "I am good. You tell how are you?"
+			"template": "Hey there, I am good. You tell how are you?"
 		},
 		{
 			"pattern" : "* WHAT IS * NLP",
 			"template": "NLP stands for Neuro-Linguistic Programming"
 		},
 		{
-			"pattern" : "I AM GOOD TOO *",
+			"pattern" : "* I AM GOOD TOO *",
 			"template": "Good then, how may I assist you in searching for library ?"
+		},
+		{
+			"pattern" : "HELLO",
+			"template": "Hello User, how may I assist you in searching for library ?"
 		}
 	]
 }

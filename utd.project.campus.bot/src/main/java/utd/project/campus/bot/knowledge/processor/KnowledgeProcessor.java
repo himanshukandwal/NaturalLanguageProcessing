@@ -29,7 +29,7 @@ public class KnowledgeProcessor {
 			prepareContext();
 			Matcher match = new Matcher(questionArray);
 			Category responseCategory = getKnowledgeResourcesParser().getMainKnowledgeGraphMaster().match(match);
-			return (responseCategory != null ? responseCategory.getTemplate() : "");
+			return (responseCategory != null ? responseCategory.getTemplate() : null);
 		} catch (NLPProjectException e) {
 			throw new NLPProjectException(" Exception while processing knowledge !" ,e);
 		}	

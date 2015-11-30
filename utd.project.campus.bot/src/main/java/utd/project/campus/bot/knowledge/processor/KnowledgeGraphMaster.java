@@ -56,8 +56,13 @@ public class KnowledgeGraphMaster {
 			return null;
 
 		int nextIndex = index + 1;
-		if (match.getMatchPathLength() <= nextIndex)
+		if (match.getMatchPathLength() <= nextIndex) {
+			if (null == category && !match.isExtended()) {
+				match.extendMatchPath("*");
+				category = matchChildren(match, nextIndex);
+			}
 			return category;
+		}
 
 		return matchChildren(match, nextIndex);
 	}

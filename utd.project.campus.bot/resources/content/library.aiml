@@ -3,7 +3,7 @@
 	"about" : "Eugene McDermott Library ",
 	"categories" : [ 
 		{ 
-			"pattern" : " * ABOUT LIBRARY * ",
+			"pattern" : " * ABOUT * LIBRARY * ",
 			"template": "The University of Texas at Dallas has Eugene McDermott Library, which has the mission of the University of Texas at Dallas by providing maximum access to relevant, authoritative, and scholarly resources."
 		},
 		{ 

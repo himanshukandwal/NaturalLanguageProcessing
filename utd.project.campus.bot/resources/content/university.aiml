@@ -3,8 +3,8 @@
 	"about" : "The University of Texas at Dallas",
 	"categories" : [ 
 		{ 
-			"pattern" : "* TELL * ABOUT UNIVERSITY * ",
-			"template": "The University of Texas at Dallas is a public research university in the University of Texas System. The main campus is in the Richardson, Texas, Telecom Corridor, 18 miles north of downtown Dallas. The institution, established in 1961 as the Graduate Research Center of the Southwest and later renamed the Southwest Center for Advanced Studies (SCAS), began as a research arm of Texas Instruments. In 1969, the founders bequeathed SCAS to the state of Texas, and Governor Preston Smith signed the bill officially creating The University of Texas at Dallas."
+			"pattern" : "* ABOUT * UNIVERSITY",
+			"template": "The University of Texas at Dallas is a public research university in the University of Texas System. The main campus is in the Richardson, Texas, Telecom Corridor, 18 miles north of downtown Dallas."
 		},
 		{ 
 			"pattern" : "* UNIVERSITY * ACHIEVEMENTS *",
@@ -12,7 +12,7 @@
 		},
 		{ 
 			"pattern" : "* WHAT * LOCATION * UNIVERSITY * ",
-			"template": "The main campus of university of Texas at Dallas is in the Richardson, Texas"
+			"template": "The main campus of university of Texas at Dallas is in the Richardson, Texas."
 		}
 	]
 }
