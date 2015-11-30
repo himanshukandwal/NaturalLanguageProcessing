@@ -3,35 +3,51 @@
 	"about" : "Eugene McDermott Library ",
 	"categories" : [ 
 		{ 
-			"pattern" : " * NAMES * LIBRARIAN *",
-			"template": "Linda Snow : Kreg Walvoord : Matt Makowka : Stephanie Isham : Loreen Henry : Ellen Safley : Chris Edwards"
+			"pattern" : " * WHO ARE * LIBRARIANS *",
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
+		},
+		{ 
+			"pattern" : " * NAMES * LIBRARIANS *",
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
+		},
+		{ 
+			"pattern" : " * LIBRARIANS * NAMES * ",
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
 		},
 		{ 
 			"pattern" : " * LIBRARIAN * NAMES * ",
-			"template": "Linda Snow : Kreg Walvoord : Matt Makowka : Stephanie Isham : Loreen Henry : Ellen Safley : Chris Edwards"
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
+		},
+		{ 
+			"pattern" : " * NAME * LIBRARIANS * ",
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
 		},
 		{ 
 			"pattern" : " * LIBRARIAN * TIMINGS * ",
-			"template": "Monday-Thursday 9 am - 10 pm : Friday 9 am - 6 pm : Saturday 10 am - 7 pm : Sunday noon - 9 pm"
+			"template": "In general, university librarian working hours on Monday to Thursday are from 9 am to 10 pm and on Friday its from 9 am to 6 pm. While on Saturday, librarian works from 10 am to 7 pm and on Sunday from noon to 9 pm."
 		},
 		{ 
 			"pattern" : " * TIMINGS * LIBRARIAN * ",
-			"template": "Monday-Thursday 9 am - 10 pm : Friday 9 am - 6 pm : Saturday 10 am - 7 pm : Sunday noon - 9 pm"
+			"template": "In general, university librarian working hours on Monday to Thursday are from 9 am to 10 pm and on Friday its from 9 am to 6 pm. While on Saturday, librarian works from 10 am to 7 pm and on Sunday from noon to 9 pm."
 		},
 		{ 
 			"pattern" : " * LIBRARIAN * TIMING * ",
-			"template": "Monday-Thursday 9 am - 10 pm : Friday 9 am - 6 pm : Saturday 10 am - 7 pm : Sunday noon - 9 pm"
+			"template": "In general, university librarian working hours on Monday to Thursday are from 9 am to 10 pm and on Friday its from 9 am to 6 pm. While on Saturday, librarian works from 10 am to 7 pm and on Sunday from noon to 9 pm."
 		},
 		{ 
 			"pattern" : " * TIMING * LIBRARIAN * ",
-			"template": "Monday-Thursday 9 am - 10 pm : Friday 9 am - 6 pm : Saturday 10 am - 7 pm : Sunday noon - 9 pm"
+			"template": "In general, university librarian working hours on Monday to Thursday are from 9 am to 10 pm and on Friday its from 9 am to 6 pm. While on Saturday, librarian works from 10 am to 7 pm and on Sunday from noon to 9 pm."
 		},
 		{ 
 			"pattern" : " * CONTACT * LIBRARIAN * ",
-			"template": "The librarian can be reached at 972-883-2643"
+			"template": "The University librarian can be reached at contact number 972-883-2643"
 		},
 		{ 
 			"pattern" : " * PAY * FINE * ",
+			"template": "You can find out about your balance by calling 972-883-2953 or by logging into your UTD Account. Library Fines may also be paid at the Bursar's office located on the 2nd floor of the Student Services Building."
+		},
+		{ 
+			"pattern" : " * PAYING * FINE * ",
 			"template": "You can find out about your balance by calling 972-883-2953 or by logging into your UTD Account. Library Fines may also be paid at the Bursar's office located on the 2nd floor of the Student Services Building."
 		},
 		{ 
@@ -52,11 +68,15 @@
 		},
 		{ 
 			"pattern" : " * COPYING * LIBRARY * ",
-			"template": "Current UTD students, faculty, and staff must have a valid Comet Card present in order to print. With an Active Comet Card 0.06 Dollar per side for black and white; 0.25 Dollar per side for color"
+			"template": "Current UTD students, faculty, and staff must have a valid Comet Card present in order to copy. With an Active Comet Card 0.06 Dollar per side for black and white; 0.25 Dollar per side for color"
 		},
 		{ 
 			"pattern" : " * COPY * LIBRARY * ",
-			"template": "Current UTD students, faculty, and staff must have a valid Comet Card present in order to print. With an Active Comet Card 0.06 Dollar per side for black and white; 0.25 Dollar per side for color"
+			"template": "Current UTD students, faculty, and staff must have a valid Comet Card present in order to copy. With an Active Comet Card 0.06 Dollar per side for black and white; 0.25 Dollar per side for color"
+		},
+		{ 
+			"pattern" : " * COPIES * LIBRARY * ",
+			"template": "Current UTD students, faculty, and staff must have a valid Comet Card present in order to copy. With an Active Comet Card 0.06 Dollar per side for black and white; 0.25 Dollar per side for color"
 		},
 		{ 
 			"pattern" : " * SCANNING * LIBRARY * ",
@@ -64,6 +84,10 @@
 		},
 		{ 
 			"pattern" : " * SCAN * LIBRARY * ",
+			"template": "Scans are free and can be emailed or saved to usb drive."
+		},
+		{ 
+			"pattern" : " * SCANNED * LIBRARY * ",
 			"template": "Scans are free and can be emailed or saved to usb drive."
 		}
 	]

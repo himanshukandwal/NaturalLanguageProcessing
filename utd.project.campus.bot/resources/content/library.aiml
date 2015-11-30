@@ -3,7 +3,11 @@
 	"about" : "Eugene McDermott Library ",
 	"categories" : [ 
 		{ 
-			"pattern" : " * ABOUT * LIBRARY * ",
+			"pattern" : " * ABOUT THE LIBRARY",
+			"template": "The University of Texas at Dallas has Eugene McDermott Library, which has the mission of the University of Texas at Dallas by providing maximum access to relevant, authoritative, and scholarly resources."
+		},
+		{ 
+			"pattern" : " * ABOUT THE UNIVERSITY LIBRARY",
 			"template": "The University of Texas at Dallas has Eugene McDermott Library, which has the mission of the University of Texas at Dallas by providing maximum access to relevant, authoritative, and scholarly resources."
 		},
 		{ 
@@ -15,7 +19,15 @@
 			"template": "The Eugene McDermott Library is located at following location ${library_location}"
 		},
 		{ 
+			"pattern" : " * WHERE IS * LIBRARY *",
+			"template": "The Eugene McDermott Library is located at following location ${library_location}"
+		},
+		{ 
 			"pattern" : " * LIBRARY * PHONE * ",
+			"template": "For general information, call 972-883-2955"
+		},
+		{ 
+			"pattern" : " * PHONE * LIBRARY",
 			"template": "For general information, call 972-883-2955"
 		},
 		{ 
@@ -23,31 +35,47 @@
 			"template": "For general information, call 972-883-2955"
 		},
 		{ 
+			"pattern" : " * PHONE NUMBER * LIBRARY",
+			"template": "For general information, call 972-883-2955"
+		},
+		{ 
 			"pattern" : " * LIBRARY * TIMINGS * ",
-			"template": "The Eugene McDermott Library is opened Open 24 Hours."
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
+		},
+		{ 
+			"pattern" : " * LIBRARY * TIMING * ",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
 		},
 		{ 
 			"pattern" : " * TIMINGS * LIBRARY * ",
-			"template": "The Eugene McDermott Library is opened Open 24 Hours."
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
+		},
+		{ 
+			"pattern" : " * TIMING * LIBRARY * ",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
 		},
 		{ 
 			"pattern" : " * LIST * LIBRARY * HOLIDAYS * ",
-			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
+		},
+		{ 
+			"pattern" : " * LIST * HOLIDAYS * LIBRARY * ",
+			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 
 			"pattern" : " * LIBRARY * HOLIDAYS * LIST *",
-			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 
 			"pattern" : " * LIBRARY * CLOSED *",
-			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 
-			"pattern" : " * LIBRARY NOT OPEN *",
-			"template": "November 26, December 23 to 28, January 1, May 30, July 4, September 5"
+			"pattern" : " * LIBRARY * NOT OPEN *",
+			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 
-			"pattern" : " * LIBRARY * TIMINGS * THANKSGIVING *",
+			"pattern" : " * LIBRARY * TIMINGS * THANKSGIVING",
 			"template": "Eugene McDermott Library and Callier Library have special hours during the week of Thanksgiving.  McDermott will close at midnight on Wednesday and reopen on Friday morning."
 		},
 		{ 

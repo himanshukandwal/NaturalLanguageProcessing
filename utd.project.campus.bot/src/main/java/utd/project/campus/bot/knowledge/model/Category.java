@@ -15,7 +15,7 @@ public class Category {
 	}
 
 	public void setPattern(String pattern) {
-		this.pattern = pattern;
+		this.pattern = pattern.trim();
 	}
 
 	public String getTemplate() {

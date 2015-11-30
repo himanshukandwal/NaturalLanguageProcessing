@@ -58,14 +58,24 @@ public class Matcher {
 
 	}
 
-	public void extendMatchPath(String matchPathElement) {
+	public void extendMatchPath() {
 		if (!isExtended) {
 			int currentMatchPathLength = matchPath.length;
 			String[] extendedMatchPath = new String[currentMatchPathLength + 1];
-			System.arraycopy(matchPath, 0, extendedMatchPath, 0, currentMatchPathLength - 1);
-			extendedMatchPath[currentMatchPathLength] = matchPathElement;
+			System.arraycopy(matchPath, 0, extendedMatchPath, 0, currentMatchPathLength);
+			extendedMatchPath[currentMatchPathLength] = "*";
 			setUpMatchPath(extendedMatchPath);
 			isExtended = true;
+		}
+	}
+	
+	public void undoExtendMatchPath() {
+		if (isExtended) {
+			int currentMatchPathLength = matchPath.length;
+			String[] unExtendedMatchPath = new String[currentMatchPathLength - 1];
+			System.arraycopy(matchPath, 0, unExtendedMatchPath, 0, currentMatchPathLength - 1);
+			setUpMatchPath(unExtendedMatchPath);
+			isExtended = false;
 		}
 	}
 

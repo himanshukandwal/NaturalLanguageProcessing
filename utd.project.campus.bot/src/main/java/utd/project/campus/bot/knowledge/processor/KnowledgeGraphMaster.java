@@ -58,12 +58,14 @@ public class KnowledgeGraphMaster {
 		int nextIndex = index + 1;
 		if (match.getMatchPathLength() <= nextIndex) {
 			if (null == category && !match.isExtended()) {
-				match.extendMatchPath("*");
+				match.extendMatchPath();
 				category = matchChildren(match, nextIndex);
+
+				if (category == null)
+					match.undoExtendMatchPath();
 			}
 			return category;
 		}
-
 		return matchChildren(match, nextIndex);
 	}
 
@@ -116,10 +118,11 @@ public class KnowledgeGraphMaster {
 	public String toString(String prefix) {
 		StringBuffer display = new StringBuffer();
 		display.append(name + " : ").append("\n");
-		for (Iterator<Map.Entry<String, KnowledgeGraphMaster>> childrenIterator = children.entrySet().iterator(); childrenIterator.hasNext();) {
+		for (Iterator<Map.Entry<String, KnowledgeGraphMaster>> childrenIterator = children.entrySet()
+				.iterator(); childrenIterator.hasNext();) {
 			Map.Entry<String, KnowledgeGraphMaster> childEntry = childrenIterator.next();
 			display.append(prefix).append(childEntry.getValue().toString(prefix + "\t"));
-			
+
 			if (childrenIterator.hasNext()) {
 				display.append("\n");
 			}
