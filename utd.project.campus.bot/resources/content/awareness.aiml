@@ -15,7 +15,11 @@
 			"template": "I am a first version university bot project"
 		},
 		{ 
-			"pattern" : "* WHAT * TIME * ",
+			"pattern" : "* WHAT * TIME NOW",
+			"template": "Time now is ${time}"
+		},
+		{ 
+			"pattern" : "* WHAT * TIME",
 			"template": "Time now is ${time}"
 		},
 		{
@@ -25,6 +29,10 @@
 		{
 			"pattern" : "* HOW YOU DOING * ",
 			"template": "I hope, I am doing good, how you doing ?"
+		},
+		{
+			"pattern" : "* YOU ARE * GOOD *",
+			"template": "I hope, I am doing good, if not please contact himanshu for betterment. You tell, how you doing ?"
 		},
 		{
 			"pattern" : "* WHERE AM I * ",
@@ -57,6 +65,10 @@
 		{
 			"pattern" : "HELLO",
 			"template": "Hello User, how may I assist you in searching for library ?"
+		},
+		{
+			"pattern" : "WHAT DO YOU DO",
+			"template": "Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?"
 		}
 	]
 }

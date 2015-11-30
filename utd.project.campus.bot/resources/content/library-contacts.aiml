@@ -11,6 +11,10 @@
 			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
 		},
 		{ 
+			"pattern" : " * LIST * LIBRARIANS * ",
+			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
+		},
+		{ 
 			"pattern" : " * LIBRARIANS * NAMES * ",
 			"template": "The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards"
 		},
@@ -84,6 +88,10 @@
 		},
 		{ 
 			"pattern" : " * SCAN * LIBRARY * ",
+			"template": "Scans are free and can be emailed or saved to usb drive."
+		},
+		{ 
+			"pattern" : " * SCANS * LIBRARY * ",
 			"template": "Scans are free and can be emailed or saved to usb drive."
 		},
 		{ 

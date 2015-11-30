@@ -19,6 +19,10 @@
 			"template": "The Eugene McDermott Library is located at following location ${library_location}"
 		},
 		{ 
+			"pattern" : " * LIBRARY * LOCATED * ",
+			"template": "The Eugene McDermott Library is located at following location ${library_location}"
+		},
+		{ 
 			"pattern" : " * WHERE IS * LIBRARY *",
 			"template": "The Eugene McDermott Library is located at following location ${library_location}"
 		},
@@ -39,6 +43,18 @@
 			"template": "For general information, call 972-883-2955"
 		},
 		{ 
+			"pattern" : " * LIBRARY * OPENS *",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
+		},
+		{ 
+			"pattern" : " * OPENING * LIBRARY *",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
+		},
+		{ 
+			"pattern" : " * LIBRARY * OPEN *",
+			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
+		},
+		{ 
 			"pattern" : " * LIBRARY * TIMINGS * ",
 			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
 		},
@@ -55,15 +71,11 @@
 			"template": "The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays."
 		},
 		{ 
-			"pattern" : " * LIST * LIBRARY * HOLIDAYS * ",
+			"pattern" : " * LIBRARY * HOLIDAYS * ",
 			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 
-			"pattern" : " * LIST * HOLIDAYS * LIBRARY * ",
-			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
-		},
-		{ 
-			"pattern" : " * LIBRARY * HOLIDAYS * LIST *",
+			"pattern" : " * HOLIDAYS * LIBRARY * ",
 			"template": "The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5."
 		},
 		{ 

@@ -11,7 +11,11 @@
 			"template": "Recently Dr. Aziz Sancar, who earned his PhD in molecular and cell biology from UT Dallas in 1977, is one of three scientists who received the 2015 Nobel Prize in Chemistry."
 		},
 		{ 
-			"pattern" : "* WHAT * LOCATION * UNIVERSITY",
+			"pattern" : " * LOCATION * UNIVERSITY",
+			"template": "The main campus of university of Texas at Dallas is in the Richardson, Texas."
+		},
+		{ 
+			"pattern" : " * UNIVERSITY * LOCATED *",
 			"template": "The main campus of university of Texas at Dallas is in the Richardson, Texas."
 		},
 		{ 

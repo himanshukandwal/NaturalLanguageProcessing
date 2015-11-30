@@ -85,6 +85,13 @@ public class KnowledgeProviderTest {
 			response = knowledgeProvider.respond("so can you tell me what is nlp".toUpperCase().split("\\s+"));
             assertEquals("NLP stands for Neuro-Linguistic Programming", response); 
 			
+            response = knowledgeProvider.respond("you are doing very good".toUpperCase().split("\\s+"));
+			assertEquals("I hope, I am doing good, if not please contact himanshu for betterment. You tell, how you doing ?", response);
+
+            response = knowledgeProvider.respond("what do you do".toUpperCase().split("\\s+"));
+			assertEquals("Hello User, I am an NLP powered BOT. I help people by solving their queries related to university library like fine payments, library timings, informing them about location and other rules like printing and scanning. So, how may I assist you ?", response);
+			
+			
 		} catch (NLPProjectException exception) {
 			exception.printStackTrace();
 			fail("Exception while environment setup !");
@@ -229,6 +236,24 @@ public class KnowledgeProviderTest {
 			response = knowledgeProvider.respond("can you please tell me the thanksgiving library timings".toUpperCase().split("\\s+"));
 			assertEquals("Eugene McDermott Library and Callier Library have special hours during the week of Thanksgiving.  McDermott will close at midnight on Wednesday and reopen on Friday morning.", response);
 
+			response = knowledgeProvider.respond("when are the library holidays".toUpperCase().split("\\s+"));
+			assertEquals("The library is closed on the following days November 26, December 23 to 28, January 1, May 30, July 4 and September 5.", response);
+			
+			response = knowledgeProvider.respond("what is the time when library opens".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays.", response);
+			
+			response = knowledgeProvider.respond("when does the library opens".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays.", response);
+			
+			response = knowledgeProvider.respond("can you please tell me wheather library is open or not".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays.", response);
+
+			response = knowledgeProvider.respond("where is the university library located".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library is located at following location (32.987796, -96.747634)", response);
+			
+			response = knowledgeProvider.respond("where is the university located".toUpperCase().split("\\s+"));
+			assertEquals("The main campus of university of Texas at Dallas is in the Richardson, Texas.", response);
+			
 		} catch (NLPProjectException exception) {
 			exception.printStackTrace();
 			fail("Exception while environment setup !");
@@ -312,7 +337,17 @@ public class KnowledgeProviderTest {
 
 			response = knowledgeProvider.respond("what are the rules regading scanning from the university library".toUpperCase().split("\\s+"));
 			assertEquals("Scans are free and can be emailed or saved to usb drive.", response);
-		
+			
+			response = knowledgeProvider.respond("can we take scans in the university library".toUpperCase().split("\\s+"));
+			assertEquals("Scans are free and can be emailed or saved to usb drive.", response);
+			
+			response = knowledgeProvider.respond("ok what are the when is the library open".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library is opened Open 24 Hours, other than the days when there are public holidays. For getting to know the holidays, ask me about the list of library holidays.", response);
+			
+			response = knowledgeProvider.respond("can you please provide me the list of librarians".toUpperCase().split("\\s+"));
+			assertEquals("The Eugene McDermott Library the main librarians are : Linda Snow, Kreg Walvoord, Matt Makowka, Stephanie Isham, Loreen Henry , Ellen Safley, Chris Edwards", response);
+			
+			
 		} catch (NLPProjectException exception) {
 			exception.printStackTrace();
 			fail("Exception while environment setup !");
