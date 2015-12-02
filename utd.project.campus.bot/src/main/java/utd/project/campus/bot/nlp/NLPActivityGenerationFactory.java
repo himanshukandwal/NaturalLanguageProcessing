@@ -41,9 +41,9 @@ public enum NLPActivityGenerationFactory {
 			return new PosTaggingNLPActivity();
 		}
 	},
-	COMPUTE_SENTIMENT() {
+	SENTIMENT_DETECTION() {
 		public NLPActivity getActivity() throws NLPProjectException {
-			return new SentimentDetectorNLPActivity();
+			return SentimentDetectorNLPActivity.getInstance();
 		}
 	};
 

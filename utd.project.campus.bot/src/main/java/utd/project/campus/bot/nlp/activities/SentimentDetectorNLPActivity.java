@@ -12,13 +12,32 @@ import utd.project.campus.bot.NLPProjectException;
 
 public class SentimentDetectorNLPActivity extends AbstractNLPActivity {
 
+	private static SentimentDetectorNLPActivity INSTANCE;
 	private SortedMap<String,Integer> sentimentMap;
-
+	private boolean isLoaded;
+	
+	private SentimentDetectorNLPActivity() {}
+	
+	public static SentimentDetectorNLPActivity getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new SentimentDetectorNLPActivity();
+		}
+		return INSTANCE;
+	}
+	
 	public SortedMap<String, Integer> getSentimentMap() {
 		if (sentimentMap == null) {
 			sentimentMap = new TreeMap<String, Integer>(); 
 		}
 		return sentimentMap;
+	}
+	
+	public void setLoaded(boolean isLoaded) {
+		this.isLoaded = isLoaded;
+	}
+	
+	public boolean isLoaded() {
+		return isLoaded;
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -27,11 +46,15 @@ public class SentimentDetectorNLPActivity extends AbstractNLPActivity {
 		int overallSentiment = 0;
 		boolean containsNot = false;
 		try {
-			processSentimentModel(loadModel());
+			if (! isLoaded()) {
+				processSentimentModel(loadModel());
+				setLoaded(true);
+			}
+			
 			if (inputs.length > 0) {
 				for (String input : inputs) {
-					if (getSentimentMap().containsKey(input))
-						overallSentiment += getSentimentMap().get(input);
+					if (getSentimentMap().containsKey(input.toLowerCase()))
+						overallSentiment += getSentimentMap().get(input.toLowerCase());
 
 					if (input.equalsIgnoreCase("not"))
 						containsNot = true;
@@ -40,8 +63,7 @@ public class SentimentDetectorNLPActivity extends AbstractNLPActivity {
 			
 			if (overallSentiment == 0) {
 				responses.add("neutral");
-			} else if (overallSentiment > 0 && ! containsNot) {
-				
+			} else if (overallSentiment > 0 && ! containsNot) {	
 				responses.add("positive");
 			} else {
 				responses.add("negative");
