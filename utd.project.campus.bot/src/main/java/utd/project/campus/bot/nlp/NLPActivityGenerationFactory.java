@@ -6,6 +6,7 @@ import utd.project.campus.bot.nlp.activities.NameFindingNLPActivity;
 import utd.project.campus.bot.nlp.activities.OrganizationFindingNLPActivity;
 import utd.project.campus.bot.nlp.activities.PosTaggingNLPActivity;
 import utd.project.campus.bot.nlp.activities.SentenceDetectorNLPActivity;
+import utd.project.campus.bot.nlp.activities.SentimentDetectorNLPActivity;
 import utd.project.campus.bot.nlp.activities.TokenizationNLPActivity;
 
 public enum NLPActivityGenerationFactory {
@@ -38,6 +39,11 @@ public enum NLPActivityGenerationFactory {
 	POS_TAGGING() {
 		public NLPActivity getActivity() throws NLPProjectException {
 			return new PosTaggingNLPActivity();
+		}
+	},
+	COMPUTE_SENTIMENT() {
+		public NLPActivity getActivity() throws NLPProjectException {
+			return new SentimentDetectorNLPActivity();
 		}
 	};
 
