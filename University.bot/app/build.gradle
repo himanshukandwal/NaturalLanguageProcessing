@@ -11,7 +11,7 @@ android {
 
     dexOptions {
         incremental true
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize "5g"
     }
 
     lintOptions {
@@ -54,7 +54,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.8.0'
     compile ('edu.utdallas:utd.project.campus.bot:0.0.1-SNAPSHOT') {
         exclude group: 'org.json', module: 'json'
-        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
-        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
     }
 }
