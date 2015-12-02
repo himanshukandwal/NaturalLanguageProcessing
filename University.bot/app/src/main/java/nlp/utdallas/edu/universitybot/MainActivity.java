@@ -2,11 +2,15 @@ package nlp.utdallas.edu.universitybot;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -19,13 +23,23 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import utd.project.campus.bot.NLPProjectException;
+import utd.project.campus.bot.knowledge.KnowledgeProvider;
 import utd.project.campus.bot.nlp.NLPActivity;
 import utd.project.campus.bot.nlp.NLPActivityGenerationFactory;
 
+import static android.speech.RecognizerIntent.ACTION_RECOGNIZE_SPEECH;
+import static android.speech.RecognizerIntent.EXTRA_LANGUAGE;
+import static android.speech.RecognizerIntent.EXTRA_LANGUAGE_MODEL;
+import static android.speech.RecognizerIntent.EXTRA_RESULTS;
 import static android.widget.CompoundButton.OnCheckedChangeListener;
+import static nlp.utdallas.edu.universitybot.util.UTDConstants.ERROR;
+import static nlp.utdallas.edu.universitybot.util.UTDConstants.NEGATIVE;
+import static nlp.utdallas.edu.universitybot.util.UTDConstants.NEUTRAL;
 import static nlp.utdallas.edu.universitybot.util.UTDConstants.NEW_LINE;
+import static nlp.utdallas.edu.universitybot.util.UTDConstants.POSITVE;
 import static nlp.utdallas.edu.universitybot.util.UTDConstants.TAB;
 
 public class MainActivity extends Activity implements RecognitionListener {
@@ -34,44 +48,118 @@ public class MainActivity extends Activity implements RecognitionListener {
 
     protected static final int REQUEST_OK = 1;
 
-    private SpeechRecognizer speech;
+    private Drawable defaultMainSearchResultBackGround;
+    private SpeechRecognizer speech = null;
     private Intent recognizerIntent;
     private ToggleButton m_mainVoiceButton;
     private ProgressBar m_progressBar;
     private TextView m_mainSearchResult;
     private TextView m_mainContentConsole;
 
+    private TextToSpeech speechFeature;
+
     private class NLPActivityTask extends AsyncTask<Void, Void, Void> {
 
         private String recordedInput;
         private TextView m_mainContentConsole;
+        private TextView m_mainSearchResult;
+        private KnowledgeProvider knowledgeProvider;
+        private StringBuffer displayConsole;
+        private String response;
+        private String sentiment;
 
-        public NLPActivityTask(String recordedInput, TextView m_mainContentConsole) {
+        public NLPActivityTask(String recordedInput, TextView m_mainContentConsole, TextView m_mainSearchResult) {
             this.recordedInput = recordedInput;
             this.m_mainContentConsole = m_mainContentConsole;
+            this.m_mainSearchResult = m_mainSearchResult;
+        }
+
+        public String getRecordedInput() {
+            return recordedInput;
+        }
+
+        public TextView getMainContentConsole() {
+            return m_mainContentConsole;
+        }
+
+        public TextView getMainSearchResult() {
+            return m_mainSearchResult;
+        }
+
+        public KnowledgeProvider getKnowledgeProvider() {
+            if (knowledgeProvider == null)
+                knowledgeProvider = KnowledgeProvider.getInstance();
+            return knowledgeProvider;
+        }
+
+        public StringBuffer getDisplayConsole() {
+            if (null == displayConsole) {
+                displayConsole = new StringBuffer();
+            }
+            return displayConsole;
+        }
+
+        public void setResponse(String response) {
+            this.response = response;
+        }
+
+        public String getResponse() {
+            return response;
+        }
+
+        public String getSentiment() {
+            if (null == sentiment)
+                sentiment = NEUTRAL;
+            return sentiment;
+        }
+
+        public void setSentiment(String sentiment) {
+            this.sentiment = sentiment;
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            Log.d(TAG, "onCancelled()");
+        }
+
+        @Override
+        protected void onCancelled(Void result) {
+            super.onCancelled(result);
+            Log.d(TAG, "onCancelled(result): " + String.valueOf(result));
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            processRecorededInput(recordedInput);
+            getDisplayConsole().setLength(0);
+            processRecorededInput(getRecordedInput());
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            Log.d(TAG, "onPostExecute");
+            getMainContentConsole().setText(getDisplayConsole().toString());
+
+            if (getSentiment().equalsIgnoreCase(NEUTRAL))
+                getMainSearchResult().setBackgroundColor(Color.parseColor("#BCE8FE"));
+            else if (getSentiment().equalsIgnoreCase(POSITVE))
+                getMainSearchResult().setBackgroundColor(Color.parseColor("#83F741"));
+            else if (getSentiment().equalsIgnoreCase(NEGATIVE))
+                getMainSearchResult().setBackgroundColor(Color.parseColor("#F96B24"));
+
+
+            if (null != getResponse()) {
+                Toast.makeText(getApplicationContext(), getResponse(), Toast.LENGTH_SHORT).show();
+                speechFeature.speak(getResponse(), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        }
+
         private void processRecorededInput(String recordedInput) {
-            StringBuffer displayConsole = new StringBuffer();
-
-            displayConsole.append(("Recorded Input - " + recordedInput)).append(NEW_LINE);
-
             try {
-                /* Detecting sentences */
-                NLPActivity activity = NLPActivityGenerationFactory.SENTENCE_DETECTION.getActivity();
-                List responses = activity.perform(recordedInput);
-
-                if (responses.size() > 0) {
-                    displayConsole.append(" Sentence(s) Detected : ");
-                    for (Iterator responseIterator = responses.iterator(); responseIterator.hasNext(); )
-                        displayConsole.append(TAB).append((String) responseIterator.next()).append(NEW_LINE);
-                }
+                NLPActivity activity;
+                List responses;
 
                 /* Creating tokens */
                 activity = NLPActivityGenerationFactory.TOKENIZATION.getActivity();
@@ -79,36 +167,12 @@ public class MainActivity extends Activity implements RecognitionListener {
 
                 List<String> tokens = new ArrayList<>();
                 for (Object response : responses)
-                    tokens.add((String) response);
+                    tokens.add(((String) response).toUpperCase());
 
                 if (tokens.size() > 0) {
 
-                    /* Detecting names */
-                    activity = NLPActivityGenerationFactory.NAME_FINDING.getActivity();
-                    responses = activity.perform(tokens.toArray(new String[0]));
-
-                    if (responses.size() > 0) {
-                        displayConsole.append(" Names Detected : ");
-                        for (Iterator responseIterator = responses.iterator(); responseIterator.hasNext(); )
-                            displayConsole.append(TAB).append((String) responseIterator.next());
-                        displayConsole.append(NEW_LINE);
-                    }
-
-                    Log.v(TAG, displayConsole.toString());
-
-                    /* Detecting Locations */
-                    activity = NLPActivityGenerationFactory.LOCATION_FINDING.getActivity();
-                    responses = activity.perform(tokens.toArray(new String[0]));
-
-                    if (responses.size() > 0) {
-                        displayConsole.append(" Locations Detected : ");
-                        for (Iterator responseIterator = responses.iterator(); responseIterator.hasNext(); )
-                            displayConsole.append(TAB).append((String) responseIterator.next());
-                        displayConsole.append(NEW_LINE);
-                    }
-
-                    Log.v(TAG, displayConsole.toString());
                     /* POS Tagging */
+                    /*
                     activity = NLPActivityGenerationFactory.POS_TAGGING.getActivity();
                     responses = activity.perform(tokens.toArray(new String[0]));
 
@@ -121,6 +185,24 @@ public class MainActivity extends Activity implements RecognitionListener {
 
                     Log.v(TAG, displayConsole.toString());
                     m_mainContentConsole.setText(displayConsole.toString());
+                    */
+
+                    getDisplayConsole().append("Response found : ").append(NEW_LINE).append(TAB);
+
+                    String response = getKnowledgeProvider().respond(tokens.toArray(new String[tokens.size()]));
+                    getDisplayConsole().append(response);
+                    Log.v(TAG, getDisplayConsole().toString());
+
+                    if (null != response)
+                        setResponse(response);
+                    else
+                        setResponse("I am sorry, I did not get that");
+
+
+                    activity = NLPActivityGenerationFactory.SENTIMENT_DETECTION.getActivity();
+                    responses = activity.perform((tokens.toArray(new String[tokens.size()])));
+                    Log.v(TAG, "Received sentiment : " + responses.get(0));
+                    setSentiment((String) responses.get(0));
                 }
 
             } catch (NLPProjectException e) {
@@ -134,23 +216,56 @@ public class MainActivity extends Activity implements RecognitionListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
+
         m_mainContentConsole = (TextView) findViewById(R.id.mainContentConsole);
         m_mainSearchResult = (TextView) findViewById(R.id.mainSearchResult);
+        defaultMainSearchResultBackGround = m_mainSearchResult.getBackground();
+
         m_mainVoiceButton = (ToggleButton) findViewById(R.id.mainVoiceButton);
         m_progressBar = (ProgressBar) findViewById(R.id.mainSearchProgressBar);
         m_progressBar.setVisibility(View.INVISIBLE);
 
+        speechFeature = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    speechFeature.setLanguage(Locale.US);
+                }
+            }
+        });
+
+        m_mainSearchResult.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { /* do nothing */ }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { /* do nothing */ }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().contains(ERROR) && s.toString().length() > 0) {
+                    Log.v(TAG, "launching activity for NLP processing! Found recorded content as - " + s.toString());
+
+                    new NLPActivityTask(s.toString(), m_mainContentConsole, m_mainSearchResult).execute();
+                }
+            }
+        });
+
         speech = SpeechRecognizer.createSpeechRecognizer(this);
         speech.setRecognitionListener(this);
 
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, "en-US");
+        recognizerIntent = new Intent(ACTION_RECOGNIZE_SPEECH);
+        recognizerIntent.putExtra(EXTRA_LANGUAGE_MODEL, "en-US");
+        recognizerIntent.putExtra(EXTRA_LANGUAGE, "en-US");
 
         m_mainVoiceButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 m_mainSearchResult.setText("");
+                m_mainContentConsole.setText("");
+                m_mainSearchResult.setBackground(defaultMainSearchResultBackGround);
+
                 if (isChecked) {
                     m_progressBar.setVisibility(View.VISIBLE);
                     m_progressBar.setIndeterminate(true);
@@ -158,7 +273,6 @@ public class MainActivity extends Activity implements RecognitionListener {
                 } else {
                     m_progressBar.setIndeterminate(false);
                     m_progressBar.setVisibility(View.INVISIBLE);
-                    speech.stopListening();
                 }
             }
         });
@@ -174,7 +288,7 @@ public class MainActivity extends Activity implements RecognitionListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_OK  && resultCode == RESULT_OK) {
-            ArrayList<String> thingsYouSaid = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            ArrayList<String> thingsYouSaid = data.getStringArrayListExtra(EXTRA_RESULTS);
             Log.v(TAG, thingsYouSaid.get(0));
 
             m_mainSearchResult.setText(thingsYouSaid.get(0));
@@ -206,13 +320,14 @@ public class MainActivity extends Activity implements RecognitionListener {
 
     @Override
     public void onBufferReceived(byte[] buffer) {
-        Log.i(TAG, "onBufferReceived: " + buffer);
+        Log.i(TAG, "onBufferReceived: " + buffer.length);
     }
 
     @Override
     public void onEndOfSpeech() {
         Log.i(TAG, "onEndOfSpeech");
         m_progressBar.setIndeterminate(true);
+        speech.stopListening();
         m_mainVoiceButton.setChecked(false);
     }
 
@@ -220,7 +335,7 @@ public class MainActivity extends Activity implements RecognitionListener {
     public void onError(int errorCode) {
         String errorMessage = getErrorText(errorCode);
         Log.d(TAG, "FAILED " + errorMessage);
-        m_mainSearchResult.setText(errorMessage + ". Please try search again.");
+        m_mainSearchResult.setText(ERROR + errorMessage + ". Please try again.");
         m_mainVoiceButton.setChecked(false);
     }
 
@@ -242,13 +357,9 @@ public class MainActivity extends Activity implements RecognitionListener {
     @Override
     public void onResults(Bundle results) {
         Log.i(TAG, "onResults");
-        Toast.makeText(getBaseContext(), "got voice results!", Toast.LENGTH_SHORT);
+        Toast.makeText(getBaseContext(), "got voice results!", Toast.LENGTH_SHORT).show();
         ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        String text = "";
-        for (String result : matches)
-            text += result + " ";
-
-        m_mainSearchResult.setText(text);
+        m_mainSearchResult.setText((matches == null || matches.size() == 0 ? "" : matches.get(0)));
     }
 
     @Override
